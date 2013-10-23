@@ -1,5 +1,7 @@
 class Cell
 
+  attr_accessor :number 
+
   def initialize number = 0 
     @number = number 
   end

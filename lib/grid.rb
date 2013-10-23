@@ -4,45 +4,27 @@ class Grid
 
   def initialize puzzle
     @puzzle = puzzle 
-    @board = @puzzle.split('').map { |number| Cell.new(number.to_i)}
+    @cells = @puzzle.split('').map { |number| (Cell.new(number.to_i)).number}
     # @board = Array.new(9) { Array.new(9) {Cell.new}}
   end
 
-  def board 
-    @board
+  def cells
+    @cells
   end
 
   def cell_count
-    @board.count
-  end
-
-  def first_row
-    array = @puzzle.split(//).map {|n| n.to_i}
-    array.first(9)
+    @cells.count
   end
 
   def row number
-    array = @puzzle.split(//).map {|n| n.to_i}
-    rows = []
-    until array == []
-      rows << array.shift(9)
-    end
-    rows[number-1] 
+   array = cells.each_slice(9).to_a
+   array[number - 1]
   end
 
   def column number 
-    array = @puzzle.split(//).map {|n| n.to_i}
-    rows = []
-    until array == []
-      rows << array.shift(9)
-    end
-    columns = rows.transpose
-    columns[number-1]
-  end
-
-  def first_block
-    array = [] 
-    array.concat(row(1).first(3) + row(2).first(3) + row(3).first(3)) 
+   array = cells.each_slice(9).to_a
+   array = array.transpose
+   array[number - 1]
   end
 
   def block number 

@@ -13,11 +13,7 @@ describe Grid do
     end
 
     it 'should have an unsolved first cell' do
-        expect(grid.board[0].number).to eq 0
-    end
-
-    it 'takes the first nine numbers of the puzzle' do 
-        expect(grid.first_row).to eq [0,1,5,0,0,3,0,0,2]
+        expect(grid.cells[0]).to eq 0
     end
 
     it 'returns the 8th row' do
@@ -28,17 +24,15 @@ describe Grid do
         expect(grid.column(1)).to eq [0,0,2,4,5,0,9,8,0]
     end
 
-    it 'can tell me its first block' do 
-        expect(grid.first_block).to eq [0,1,5,0,0,0,2,7,0]
-    end
-
     it 'can tell me its fifth block' do
         expect(grid.block(5)).to eq [0,0,2,0,4,0,9,0,5]
     end 
 
     it 'should have a solved second cell with value 1' do
-        expect(grid.board[1].number).to eq 1 
+        expect(grid.cells[1]).to eq 1 
     end
+
+    it 
 
   end
 

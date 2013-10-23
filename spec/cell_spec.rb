@@ -7,6 +7,9 @@ describe Cell do
     expect(cell.number).to eq 0
   end 
 
+  it 'always has a number' do 
+  end
+
   it 'knows when it is not solved' do
     expect(cell.solved?).to be_false
   end
@@ -16,7 +19,6 @@ describe Cell do
     expect(cell.solved?).to be_true
   end
 
-  it ''
-end
+  it
 
 end
