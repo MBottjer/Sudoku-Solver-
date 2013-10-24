@@ -19,32 +19,34 @@ class Grid
     @indices.count
   end
 
-  def row number
-   array = cells.each_slice(9).to_a
-   array[number - 1]
+  def row index
+   from = index - index % 9
+   @puzzle.slice(from, 9).split(//).map {|number| number.to_i}
   end
 
-  def column number 
-   array = cells.each_slice(9).to_a
-   array = array.transpose
-   array[number - 1]
+  def column index 
+    initial = index % 9
+    Array.new(9).map {
+      cell = @puzzle[initial].to_i
+      initial += 9
+      cell
+    }
   end
 
-  # def block number 
-  #   array = cells.each_slice(3).to_a
-  #   new_array = []
+  def block index
+    initial = ((index) / (9 * 3)) * 9 * 3 
+   Array.new(3).map {
+      cells = @puzzle.slice(initial, 3).split(//)
+      initial += 9
+      cells
+    }.flatten.map(&:to_i)
+  end
 
-
-  #   # array = []
-  #   # if [1,4,7].include? number
-  #   #   array.concat(row(number).first(3) + row(number + 1).first(3) + row(number + 2).first(3)) 
-  #   # elsif [2,5,8].include? number 
-  #   #   array.concat(row(number-1)[3,3] + row(number)[3,3] + row(number + 1)[3,3])
-  #   # else
-  #   #   array.concat(row(number-2).last(3) + row(number-1).last(3) + row(number).last(3))
-  #   # end
-  # end
-
+  def non_candidates index
+    non_cand = row(index) + column(index) + block(index)
+    non_cand = non_cand.reject { |n| n==0}
+    non_cand.uniq
+  end
 
 
 end

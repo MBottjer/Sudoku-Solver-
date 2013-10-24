@@ -25,5 +25,13 @@ class Cell
     @block = column / 3 + 3 * (row / 3)
   end
 
+  def candidates 
+    @value = (1..9).to_a if !solved?
+  end
+
+   def solvable?(non_candidates)
+    (candidates - non_candidates).length == 1
+  end
+
 end
 
