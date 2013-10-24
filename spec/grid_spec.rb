@@ -41,9 +41,20 @@ describe Grid do
     end
 
     it 'returns the non-candidates of a given cell' do
-        cell = double :Cell, index: 69
-        expect(grid.non_candidates(cell.index)).to eq [8,6,7,2,5,9,4,3]
+        cell = double :Cell, index: 20
+        expect(grid.non_candidates(cell.index)).to eq [2,7,6,8,4,3,5,1]
     end
+
+    it 'knows that at the start the grid is not solved' do
+        expect(grid.solved?).to be_false
+    end
+
+   it 'can solve the puzzle' do
+        expect(grid.solved?).to be_false
+        grid.solve
+        expect(grid.solved?).to be_true
+        expect(grid.to_s).to eq '615493872348127956279568431496832517521746389783915264952681743864379125137254698'
+   end
 
 
     # it 'solves the puzzle' do

@@ -29,8 +29,12 @@ class Cell
     @value = (1..9).to_a if !solved?
   end
 
-   def solvable?(non_candidates)
+  def solvable?(non_candidates)
     (candidates - non_candidates).length == 1
+  end
+
+  def solve index
+    @value = (candidates - non_candidates(index)).join.to_i
   end
 
 end

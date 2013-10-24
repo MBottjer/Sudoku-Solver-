@@ -1,4 +1,4 @@
-require 'cell'
+# require 'cell'
 
 class Grid
 
@@ -46,6 +46,20 @@ class Grid
     non_cand = row(index) + column(index) + block(index)
     non_cand = non_cand.reject { |n| n==0}
     non_cand.uniq
+  end
+
+  def solved?
+    return true if indices.all? {|cell| cell.solved?}
+    false
+  end
+
+  def solve
+    while !solved?
+      @indices.each do |cell| 
+      cell.solve(index) if cell.solvable?
+    end
+  end
+      solved?
   end
 
 
