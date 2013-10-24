@@ -2,11 +2,12 @@ require 'grid'
 
 class Cell
 
-  attr_accessor :index, :value
+  attr_accessor :index, :value, :candidates
 
   def initialize index = 0
     @index = index
     @value = '015003002000100906270068430490002017501040380003905000900081040860070025037204600'[@index].to_i
+    @candidates = (1..9).to_a
   end
 
   def solved?
@@ -25,13 +26,12 @@ class Cell
     @block = column / 3 + 3 * (row / 3)
   end
 
-  def candidates 
-    @value = (1..9).to_a if !solved?
-    @value
-  end
+  # def candidates 
+  #   @candidates = (1..9).to_a if !solved?
+  # end
 
   def remaining_possibilities(grid)
-    (candidates - grid.non_candidates(index))
+    @candidates - grid.non_candidates(index)
   end
 
   def solvable_on?(grid)

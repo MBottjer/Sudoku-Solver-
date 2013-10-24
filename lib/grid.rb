@@ -54,10 +54,14 @@ class Grid
   def solve
     while !solved?
       indices.each do |cell| 
-        cell.solve(self) if cell.solvable_on?(self) == true
+        cell.solve(self) if cell.solvable_on?(self)
     end
     end
   end
+
+  # def to_s
+  #   indices.each { |cell| cell.value }
+  # end
 
 end
 

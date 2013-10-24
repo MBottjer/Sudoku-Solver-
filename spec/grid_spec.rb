@@ -57,9 +57,7 @@ describe Grid do
    end
 
 
-    # it 'solves the puzzle' do
-    #     expect(grid)
-    # end
+
 
   end
 
