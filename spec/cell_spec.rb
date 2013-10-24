@@ -4,6 +4,9 @@ require 'grid'
 describe Cell do
   let (:cell) {Cell.new}
 
+   let(:puzzle) { '015003002000100906270068430490002017501040380003905000900081040860070025037204600' }
+    let(:grid) { Grid.new(puzzle)}
+
   it 'cell value is zero it is not solved' do
     cell = Cell.new 4
     expect(cell.solved?).to be_false
@@ -41,13 +44,12 @@ describe Cell do
 
   it 'can say if there is one solution' do 
     cell = Cell.new 20 
-    expect(cell.solvable?([8,6,7,2,5,9,4,3])).to be_true
+    expect(cell.solvable_on?(grid)).to be_true
   end
 
   it 'is assigned its solved value if there is only one solution' do
     cell = Cell.new 20
-    expect(cell).to receive(:non_candidates).and_return([2,7,6,8,4,3,5,1])
-    expect(cell.solve(cell.index)).to eq 9
+    expect(cell.solve(grid)).to eq 9
   end
 
   # it 'can solve itself' do

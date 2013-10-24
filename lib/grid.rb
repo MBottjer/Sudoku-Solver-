@@ -1,5 +1,3 @@
-# require 'cell'
-
 class Grid
 
   attr_reader :indices
@@ -44,7 +42,7 @@ class Grid
 
   def non_candidates index
     non_cand = row(index) + column(index) + block(index)
-    non_cand = non_cand.reject { |n| n==0}
+    non_cand = non_cand.reject { |n| n == 0}
     non_cand.uniq
   end
 
@@ -55,13 +53,11 @@ class Grid
 
   def solve
     while !solved?
-      @indices.each do |cell| 
-      cell.solve(index) if cell.solvable?
+      indices.each do |cell| 
+        cell.solve(self) if cell.solvable_on?(self) == true
+    end
     end
   end
-      solved?
-  end
-
 
 end
 

@@ -27,14 +27,19 @@ class Cell
 
   def candidates 
     @value = (1..9).to_a if !solved?
+    @value
   end
 
-  def solvable?(non_candidates)
-    (candidates - non_candidates).length == 1
+  def remaining_possibilities(grid)
+    (candidates - grid.non_candidates(index))
   end
 
-  def solve index
-    @value = (candidates - non_candidates(index)).join.to_i
+  def solvable_on?(grid)
+    remaining_possibilities(grid).length == 1
+  end
+
+  def solve(grid)
+    @value = remaining_possibilities(grid).join.to_i
   end
 
 end
